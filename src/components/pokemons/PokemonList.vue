@@ -12,7 +12,7 @@ export default {
     <section id="pokemons">
         <div class="row g-4 row-cols-2 row-cols-md-3 row-cols-lg-4">
             <div class="col" v-for="pokemon in store.pokemons" :key="pokemon.number">
-                <PokemonCard :image="pokemon.imageUrl" :name="pokemon.name" :type1="pokemon.type1" :type2="pokemon.type2" />
+                <PokemonCard class="text-white" :image="pokemon.imageUrl" :name="pokemon.name" :type1="pokemon.type1" />
             </div>
         </div>
     </section>
