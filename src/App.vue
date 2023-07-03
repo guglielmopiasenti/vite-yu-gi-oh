@@ -4,7 +4,9 @@ export default {
     components: { AppMain }
 };
 </script>
-<template></template>
+<template>
+    <AppMain />
+</template>
 
 <style lang="scss">
 @use 'src/assets/scss/style.scss';

@@ -1,21 +1,29 @@
 <script>
 import axios from 'axios';
 const endpoint = 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons';
+import PokemonCard from './PokemonCard.vue';
 export default {
+    components: { PokemonCard },
     data() {
         return {
-            pokemon: []
-
-        }
+            pokemons: []
+        };
     },
     created() {
         axios.get(endpoint).then(res => {
-            this.pokemon = res.data.docs;
+            this.pokemons = res.data.docs;
         });
-    }
+    },
+    components: { PokemonCard }
 };
 </script>
 <template>
-    <section id="pokemon"></section>
+    <section id="pokemons">
+        <div class="row g-4 row-cols-2 row-cols-md-3 row-cols-lg-4">
+            <div class="col" v-for="pokemon in pokemons" :key="pokemon.number">
+                <PokemonCard :image="pokemon.imageUrl" :name="pokemon.name" :type1="pokemon.type1" :type2="pokemon.type2" />
+            </div>
+        </div>
+    </section>
 </template>
 <style></style>
