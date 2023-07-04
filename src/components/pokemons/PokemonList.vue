@@ -10,8 +10,11 @@ export default {
 </script>
 <template>
     <section id="pokemons">
+        <!-- Creating a row with columns for each Pokemon -->
         <div class="row g-4 row-cols-2 row-cols-md-3 row-cols-lg-4">
+            <!-- Looping through each Pokemon in the 'store.pokemons' array -->
             <div class="col" v-for="pokemon in store.pokemons" :key="pokemon.number">
+                <!-- Rendering the PokemonCard component for each Pokemon -->
                 <PokemonCard class="text-white" :image="pokemon.imageUrl" :name="pokemon.name" :type1="pokemon.type1" />
             </div>
         </div>

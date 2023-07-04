@@ -8,13 +8,16 @@ export default {
     components: { AppMain, SearchForm },
 
     created() {
+        // Fetching data from the specified endpoint using axios
         axios.get(endpoint).then(res => {
+            // Assigning the received data to the 'pokemons' property in the store
             store.pokemons = res.data.docs;
         });
     },
 };
 </script>
 <template>
+    <!-- Rendering the AppMain component -->
     <AppMain />
 </template>
 
