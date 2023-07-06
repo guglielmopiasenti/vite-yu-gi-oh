@@ -1,7 +1,20 @@
 <script>
+import axios from 'axios';
 import PokemonList from './pokemons/PokemonList.vue';
 export default {
-    components: { PokemonList }
+    components: { PokemonList },
+    methods: {
+        filterPokemon(type) {
+            const uri = `${endpoint} + /types1=${type} `;
+            this.fetchPokemons(uri);
+        },
+        fetchTypes() {
+            axios.get(endpoint + '/types1').then(res => {
+                store.types = res.data;
+            })
+        }
+    },
+
 };
 </script>
 <template>
@@ -11,7 +24,7 @@ export default {
                 <h1 class="text-center py-5">Pokévuex</h1>
             </header>
             <main>
-                <PokemonList />
+                <PokemonList @type-change="filterPokemon" />
             </main>
         </div>
     </div>
