@@ -1,14 +1,22 @@
 <script>
 import PokemonCard from './PokemonCard.vue';
 import { store } from '../../assets/data/store.js';
+import SearchForm from './SearchForm.vue';
 export default {
-    components: { PokemonCard },
+    components: { PokemonCard, SearchForm },
     data() {
         return { store: store }
+    },
+    emits: ['type-change'],
+    methods: {
+        onOptionChange(type) {
+            this.$emit('type-change', type);
+        }
     }
 };
 </script>
 <template>
+    <SearchForm defaultLabel="All types" :options="store.types" @option-change="onOptionChange" />
     <section id="pokemons">
         <!-- Creating a row with columns for each Pokemon -->
         <div class="row g-4 row-cols-2 row-cols-md-3 row-cols-lg-4">
