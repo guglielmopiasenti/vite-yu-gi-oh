@@ -13,6 +13,7 @@ export default {
             // Assigning the received data to the 'pokemons' property in the store
             store.pokemons = res.data.docs;
         });
+        this.fetchTypes();
     },
 };
 </script>
