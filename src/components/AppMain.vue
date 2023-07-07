@@ -1,19 +1,28 @@
 <script>
 import axios from 'axios';
 import PokemonList from './pokemons/PokemonList.vue';
+import { store } from '../assets/data/store.js';
 export default {
     components: { PokemonList },
     methods: {
         filterPokemon(type) {
-            const uri = `${endpoint} + /types1=${type} `;
+            const uri = `${store.endpoint}?eq[type1]=${type}`;
             this.fetchPokemons(uri);
         },
         fetchTypes() {
-            axios.get(endpoint + '/types1').then(res => {
+            axios.get(store.endpoint + '/types1').then(res => {
                 store.types = res.data;
-            })
-        }
+            });
+        },
+        fetchPokemons(uri) {
+            axios.get(uri).then(res => {
+                store.pokemons = res.data.docs;
+            });
+        },
     },
+    created() {
+        this.fetchTypes();
+    }
 
 };
 </script>
